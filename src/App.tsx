@@ -1,38 +1,77 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 
 const App: React.FC = () => {
-  const sliderRef = useRef<HTMLDivElement>(null);
+  const cardSliderRef = useRef<HTMLDivElement>(null);
+  const slideRef = useRef<HTMLDivElement>(null);
+  const [active, setActive] = useState<number>(1);
+  const numOfCards = 10;
 
-  const shiftLeft = () => {
-    console.log(sliderRef.current);
-    sliderRef.current?.scrollBy({ left: -500, top: 0, behavior: "smooth" });
+  const shiftCardLeft = () => {
+    console.log(cardSliderRef.current);
+    cardSliderRef.current?.scrollBy({ left: -500, top: 0, behavior: "smooth" });
   };
 
+  const shiftCardRight = () => {
+    cardSliderRef.current?.scrollBy({ left: 500, top: 0, behavior: "smooth" });
+  };
+
+  const shiftLeft = () => {
+    active > 1 ? setActive((prev) => prev - 1) : setActive(10);
+  };
   const shiftRight = () => {
-    sliderRef.current?.scrollBy({ left: 500, top: 0, behavior: "smooth" });
+    active < numOfCards ? setActive((prev) => prev + 1) : setActive(1);
   };
 
   return (
     <main>
-      <h1>test</h1>
+      <h1 className="header">
+        Create Your Own React/Next Slider Without package
+      </h1>
 
-      <div className="slider">
-        <span className="arrow-left arr" onClick={shiftLeft}>
-          &larr;
-        </span>
-        <div className="slider-container" ref={sliderRef}>
-          <div className="card-container">
-            {[...Array(9)].map((_, ind) => (
-              <div className="card" key={ind}>
-                {ind + 1}
-              </div>
-            ))}
+      <section className="card-slider">
+        <h1 className="title">Card Slider</h1>
+        <div className="slider">
+          <span className="arrow-left arr" onClick={shiftCardLeft}>
+            &larr;
+          </span>
+          <div className="slider-container" ref={cardSliderRef}>
+            <div className="card-container">
+              {[...Array(numOfCards)].map((_, ind) => (
+                <div className="card" key={ind}>
+                  {ind + 1}
+                </div>
+              ))}
+            </div>
           </div>
+          <span className="arrow-right arr" onClick={shiftCardRight}>
+            &rarr;
+          </span>
         </div>
-        <span className="arrow-right arr" onClick={shiftRight}>
-          &rarr;
-        </span>
-      </div>
+      </section>
+
+      <section className="single-slider">
+        <h1 className="title">Single Slider</h1>
+        <div className="single-slider-container">
+          <span className="arrow-left arr" onClick={shiftLeft}>
+            &larr;
+          </span>
+
+          {[...Array(numOfCards)].map((_, ind) => (
+            <div
+              className={`single-slide ${
+                active !== ind + 1 ? "invisible" : ""
+              }`}
+              key={ind}
+              ref={slideRef}
+            >
+              {ind + 1}
+            </div>
+          ))}
+          <span className="arrow-right arr" onClick={shiftRight}>
+            &rarr;
+          </span>
+        </div>
+      </section>
     </main>
   );
 };
