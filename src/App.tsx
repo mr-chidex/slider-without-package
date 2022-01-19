@@ -7,7 +7,6 @@ const App: React.FC = () => {
   const numOfCards = 10;
 
   const shiftCardLeft = () => {
-    console.log(cardSliderRef.current);
     cardSliderRef.current?.scrollBy({ left: -500, top: 0, behavior: "smooth" });
   };
 
