@@ -15,7 +15,7 @@ const App: React.FC = () => {
   };
 
   const shiftLeft = () => {
-    active > 1 ? setActive((prev) => prev - 1) : setActive(10);
+    active > 1 ? setActive((prev) => prev - 1) : setActive(numOfCards);
   };
   const shiftRight = () => {
     active < numOfCards ? setActive((prev) => prev + 1) : setActive(1);
