@@ -58,19 +58,19 @@ main {
 .card {
   width: 20rem;
   height: 30rem;
-  background-color: tomato;
+  background-color: #bda09a;
   margin: 0 1rem;
   display: grid;
   place-items: center;
   font-size: 2rem;
   color: #fff;
   padding-bottom: 0.3rem;
-  box-shadow: 1px 1px 7px 1px #a74646;
+  box-shadow: 1px 1px 7px 1px #dbabab;
 }
 
 .arr {
   font-size: 1.5rem;
-  background-color: #a73a27b3;
+  background-color: rgb(47, 36, 34);
   padding: 1.5rem;
   border-radius: 50%;
   position: absolute;
@@ -112,7 +112,7 @@ main {
 .single-slide {
   width: inherit;
   height: inherit;
-  background-color: tomato;
+  background-color: #bda09a;
   display: grid;
   place-items: center;
   color: #fff;
@@ -122,4 +122,17 @@ main {
 
 .invisible {
   display: none;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0.1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.fade {
+  animation: fadeIn 0.9s ease-out;
 }

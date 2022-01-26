@@ -17,6 +17,7 @@ const App: React.FC = () => {
   const shiftLeft = () => {
     active > 1 ? setActive((prev) => prev - 1) : setActive(numOfCards);
   };
+
   const shiftRight = () => {
     active < numOfCards ? setActive((prev) => prev + 1) : setActive(1);
   };
@@ -57,7 +58,7 @@ const App: React.FC = () => {
 
           {[...Array(numOfCards)].map((_, ind) => (
             <div
-              className={`single-slide ${
+              className={`single-slide fade ${
                 active !== ind + 1 ? "invisible" : ""
               }`}
               key={ind}
